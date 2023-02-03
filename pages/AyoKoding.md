@@ -1,5 +1,3 @@
-public:: true
-
 - Original Content
   <!-- - Lang: [[English]]
     - query-sort-by:: updated-at
