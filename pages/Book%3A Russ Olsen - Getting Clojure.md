@@ -226,6 +226,7 @@ type:: content
       ;; => ["Emma" "Coma" "War and Peace" "Jaws"]
       ```
 - Chapter 3 - Maps, Keywords, and Sets
+  collapsed:: true
   - Maps
     - [[Hash-map]]
     - Maps is also immutable
@@ -1100,6 +1101,51 @@ type:: content
       ;; => "WHITE"
       ```
 - Chapter 8 - Def, Symbols, Vars
+  - If vars are all about providing a global, stable environment for your code, you might wonder why vars are mutable. After all, Clojure loves immutability. But we can def and re-def our vars with wild abandon. The answer is as simple as it is pragmatic: mutable vars make for more productive Clojure programmers. Most Clojure programming is done in some form of REPL or other. While your code is under development, mutable vars are a gift from heaven.
+    - Things are different in production. The vars in a production program are just as mutable as those in development, but you should avoid changing them. In production code, you should `def` (and `defn`) things and let them be.
+  - One thing to keep in mind is that let does not create vars.
+  - Code snippets
+    - ```clojure
+      (ns follow-along.ch08-def-symbols-vars)
+
+      ;; A global, stable place for your stuff
+
+      (def title "Emma")
+      (def PI 3.14)
+      (def ISBN-LENGTH 13)
+      (def COMPANY-NAME "Blotts Books")
+
+
+      (defn book-description [book]
+        (str (:title book)
+             " Written by "
+             (:author book)))
+      (def book-description
+        (fn [book]
+          (str (:title book)
+               " Written by "
+               (:author book))))
+
+      (def OLD-ISBN-LENGTH 10)
+      (def isbn-lengths [OLD-ISBN-LENGTH ISBN-LENGTH])
+      (defn valid-isbn [isbn]
+        (or (= (count isbn) OLD-ISBN-LENGTH)
+            (= (count isbn) ISBN-LENGTH)))
+
+      ;; Symbols are things
+
+      ;; string "Austen" and the symbol author
+      (def author "Austen")
+      'author
+      ;; => author
+      (str 'author)
+      ;; => "author"
+
+      (= 'author 'some-other-symbol)
+      ;; => false
+      (= 'title 'title)
+      ;; => true
+      ```
 - Chapter 9 - Namespaces
 - Chapter 10 - Sequences
 - Chapter 11 - Lazy Sequences
