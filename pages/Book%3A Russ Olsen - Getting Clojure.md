@@ -1147,6 +1147,54 @@ type:: content
       ;; => true
       ```
 - Chapter 9 - Namespaces
+  - Along with the namespace-to-file-name transformation, Clojure also relies on the Java class path—essentially a list of places that the JVM looks for code—to help it locate namespaces. This is how Clojure knows to look in the src directory, and how it manages to locate the built-in Clojure library code. More on this in ((63dd196e-c1db-4ccf-b0b3-030ea7f9fc1f)) .
+  - REPLs generally include the name of the current namespace in their prompts. If you start a REPL with Leiningen outside of a project directory, your initial namespace will be `user`, and that’s what you will see in your prompt. On the other hand, if you start a REPL from inside of a Clojure project directory, Leiningen will default to the `core` namespace of that project.
+  - Code snippets
+    - ```clojure
+      (ns follow-along.ch09-namespaces
+        (:require
+         clojure.data
+         [follow-along.pricing :as pricing
+          :refer [discount-rate]]))
+
+      ;; A place for your vars
+
+      (pricing/discount-price {:title  "Emma"  :price 9.99})
+      ;; => 8.4915
+
+      ;; => 8.4915
+
+      ;; Loading namespaces
+
+      (def literature ["Emma" "Oliver Twist" "Possession"])
+      (def horror ["It" "Carry" "Possession"])
+
+      (clojure.data/diff literature horror)
+      ;; => [["Emma" "Oliver Twist"] ["It" "Carry"] [nil nil "Possession"]]
+
+
+      discount-rate
+      ;; => 0.15
+
+      ;; Namespaces, symbols, and keywords
+
+      (str "Current ns:" *ns*)
+      ;; => "Current ns:follow-along.ch09-namespaces"
+
+      (ns-map (find-ns 'user)) ; include all the predefined vars
+      (ns-map 'user) ; do the same as above
+
+      discount-rate
+      ;; => 0.15
+      (ns-unmap *ns* 'discount-rate)
+      ;; discount-rate
+      ;; error
+
+      ;; don't execute it more than once
+      ;; :reload will not affect this
+      ;; change it with ns-unmap
+      ;; (defonce some-value (function-with-side-effects))
+      ```
 - Chapter 10 - Sequences
 - Chapter 11 - Lazy Sequences
 - Chapter 12 - Destructuring
@@ -1154,6 +1202,7 @@ type:: content
 - Chapter 14 - Tests
 - Chapter 15 - Spec
 - Chapter 16 - Interoperating with Java
+  id:: 63dd196e-c1db-4ccf-b0b3-030ea7f9fc1f
 - Chapter 17 - Threads, Promises, and Futures
 - Chapter 18 - State
 - Chapter 19 - Read and Eval
