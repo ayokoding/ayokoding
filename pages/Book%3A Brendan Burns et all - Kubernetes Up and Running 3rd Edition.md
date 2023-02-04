@@ -69,6 +69,15 @@ type:: content
           - Provide isolation and access control
         - Ingress objects
           - Provide an easy-to-use front end that can combine multiple microservices into a single externalized API surface area.
+    - Separation of concerns for consistency and scaling
+  - Abstracting your infrastructure
+    - The move to application-oriented container APIs like Kubernetes has two concrete benefits.
+      - It separates developers from specific machines
+        - Machines can simply be added in aggregate to scale the cluster
+      - Enables a high degree of portability
+        - Developers are consuming a higher-level API that is implemented in terms of the specific cloud infrastructure APIs.
+  - Efficiency
+    - Because developers no longer think in terms of machines, their applications can be colocated on the same machines without impacting the applications themselves.
 - Chapter 2 - Creating and Running Containers
   - Provides a detailed introduction to containers and containerized application development.
 - Chapter 3 - Deploying A Kubernetes Cluster
