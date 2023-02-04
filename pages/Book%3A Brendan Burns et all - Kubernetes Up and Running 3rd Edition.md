@@ -43,6 +43,10 @@ type:: content
     - How to organize our applications in source control.
   - Appendix A - Building Your Own Kubernetes Cluster
 - Chapter 1 - Introduction
+  collapsed:: true
+  :LOGBOOK:
+  CLOCK: [2023-02-04 Sat 16:33:55]--[2023-02-04 Sat 16:33:56] => 00:00:01
+  :END:
   - Outlines the high-level benefits of Kubernetes without diving too deeply into the details.
   - Containers and Kubernetes can provide the tools that we need to move quickly while staying available. The core concepts that enable this are:
     - Immutability
@@ -80,6 +84,19 @@ type:: content
     - Because developers no longer think in terms of machines, their applications can be colocated on the same machines without impacting the applications themselves.
 - Chapter 2 - Creating and Running Containers
   - Provides a detailed introduction to containers and containerized application development.
+  - Container Images
+    - What
+      - A binary package that encapsulates all of the files necessary to run a program inside of an OS container.
+    - Kubernetes supports both [[Docker]]- and [[Open Container Initiative (OCI)]]-compatible images via Docker and other runtimes.
+    - Containers fall into two main categories
+      - System containers
+        - Seek to mimic virtual machines and often run a full boot process.
+      - Application containers
+        - They commonly run a single program.
+    - Optimizing image sizes
+      - Gotchas
+        - Files that are removed by subsequent layers in the system are actually still present in the images. They're just inaccessible.
+      -
 - Chapter 3 - Deploying A Kubernetes Cluster
   - Covers how to deploy Kubernetes (getting cluster up and running)
 - Chapter 4 - Common Kubectl Commands
