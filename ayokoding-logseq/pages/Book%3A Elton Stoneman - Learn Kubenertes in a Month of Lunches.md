@@ -214,6 +214,7 @@ type:: content
 		  kubectl get all
 		  ```
 - Chapter 3 - Connecting Pods Over The Network with Services
+	-
 - Chapter 4 - Configuring applications with ConfigMaps and Secrets
 - Chapter 5 - Storing data with Volumes, Mounts, and Claims
 - Chapter 6 - Scaling applications across multiple pods with controllers
