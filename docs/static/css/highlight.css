@@ -11,7 +11,7 @@
 }
 
 .dark-theme .hljs {
-  background: transparent;
+    background: transparent;
 }
 
 .hljs-keyword,
@@ -76,7 +76,7 @@
 }
 
 .hljs-selector-class {
-  color: #a082bd;
+  color: #A082BD
 }
 
 .hljs-keyword,
