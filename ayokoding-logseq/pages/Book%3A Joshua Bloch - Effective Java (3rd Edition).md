@@ -39,3 +39,5 @@ type:: content
 - Chapter 10 - Exceptions
 - Chapter 11 - Concurrency
 - Chapter 12 - Serialization
+- Next steps
+	- [[Book: Martijn Verburg, et al - The Well-Grounded Java Developer (2nd Edition)]]
