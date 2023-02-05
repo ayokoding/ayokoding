@@ -6,23 +6,34 @@ lang:: en
 type:: content
 
 - Topics
+  collapsed:: true
 	- [[Clojure]]
 - Tags
+  collapsed:: true
 	- [[Book]]
 - Publishers
+  collapsed:: true
 	- [[Pragmatic Bookshelf]]
 - #target-audience
+  collapsed:: true
 	- [[Entry Level Programmer]]
 - Read on
+  collapsed:: true
 	- [[O'Reilly Book]]
+	  collapsed:: true
 		- https://www.oreilly.com/library/view/automating-workflows-with/9781800560406
 - #wkf-personal-remarks
+  collapsed:: true
 	- Pros
+	  collapsed:: true
 		- Easy to follow
 		- There are "In the Wild" sections
+		  collapsed:: true
 			- Explain to us about the recently explained stuff in the "real" codebase.
 - Table of Contents
+  collapsed:: true
 	- Part 1: Basics
+	  collapsed:: true
 		- Chapter 1 - Hello, Clojure
 		- Chapter 2 - Vectors and Lists
 		- Chapter 3 - Maps, Keywords, and Sets
@@ -33,6 +44,7 @@ type:: content
 		- Chapter 8 - Def, Symbols, Vars
 		- Chapter 9 - Namespaces
 	- Part 2: Intermediate
+	  collapsed:: true
 		- Chapter 10 - Sequences
 		- Chapter 11 - Lazy Sequences
 		- Chapter 12 - Destructuring
@@ -40,6 +52,7 @@ type:: content
 		- Chapter 14 - Tests
 		- Chapter 15 - Spec
 	- Part 3: Advanced
+	  collapsed:: true
 		- Chapter 16 - Interoperating with Java
 		- Chapter 17 - Threads, Promises, and Futures
 		- Chapter 18 - State
@@ -47,7 +60,9 @@ type:: content
 		- Chapter 20 - Macros
 		- Chapter 21 - Conclusion
 - Chapter 1 - Hello, [[Clojure]]
+  collapsed:: true
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c01-hello-clojure)
 		  
@@ -128,8 +143,10 @@ type:: content
 		  ;;    Divide by zero
 		  ```
 - Chapter 2 - Vectors and Lists
+  collapsed:: true
 	- Vectors and Lists are immutable
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c02-vectors-and-lists)
 		  
@@ -228,21 +245,27 @@ type:: content
 - Chapter 3 - Maps, Keywords, and Sets
   collapsed:: true
 	- Maps
+	  collapsed:: true
 		- [[Hash-map]]
 		- Maps is also immutable
 		- Associative Vectors
+		  collapsed:: true
 			- Vectors and maps have a lot in common. They both associate keys with values, the difference being that with vectors the keys are limited to integers while in maps the keys can be more or less anything. That is, in fact, how Clojure looks at vectors—which means that many of the functions that work with maps will also work with vectors. For example, assoc and dissoc work fine on vectors. Thus `(assoc [:title :by :published] 1 :author)` will give you `[:title :author :published]`.
 		- The maps that you create with the literal `{}` or the `hash-map` function make no promises about the order of their keys.
 		- Clojure treats commas as whitespace.
 	- Keywords
+	  collapsed:: true
 		- Technically, keywords are interned strings, similar to symbols in Ruby and distant cousins to the individual items that go into enumerated types in other languages.
 	- Sets
+	  collapsed:: true
 		- Clojure Sets are all about membership
 		- Sets have their own ideas about the order of their elements
 	- Keep in mind that in expressions like `(:author book)` or `(:sci-fi genres)`, the keywords `:author` and `:sci-fi` aren’t just pretending to be functions. They are functions—functions that look themselves up in a map or a set. It is very common, if a bit confusing to beginners, to see a keyword like `:title` in a context where a function is clearly called for. In those situations, you can bet that there is either a map or a set involved.
 	- Wrapping up
+	  collapsed:: true
 		- We are now done with Clojure's basic data structures!
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c03-maps-keywords-and-sets)
 		  
@@ -407,9 +430,11 @@ type:: content
 		  
 		  ```
 - Chapter 4 - Logic
+  collapsed:: true
 	- Note that the `=` function is built on the idea of structural equality: roughly, two values are equal according to `=` if they have the same value. Under the hood, `=` is identical to the Java equals method.
 	- One issue with having a more or less infinite collection of true things along with two different false things is the terminology. When we say something is `true`, do we mean the specific value `true` or just true in the sense of not being `false` or `nil`? To avoid confusion, Clojurists sometimes refer to the values treated as accurate in the more general sense as being "truthy". Thus, while only `true` is `true`, `"hello"`, `1.0`, and `"Russ"` is all truthy. Similarly, we can use "falsy" to describe the metaphysical quality shared by `nil` and `false`. In Clojure, there are precisely two "falsy"s things—`false` and `nil`—and an infinite number of "truthy" things.
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c04-logic)
 		  
@@ -593,8 +618,10 @@ type:: content
 		  
 		  ```
 - Chapter 5 - More Capable Functions
+  collapsed:: true
 	- Multimethod addition does not have to appear in the same file or be written by the same programmer as the originals. And this means Multimethods provide a great extension point for your code.
 	- Loop and recur
+	  collapsed:: true
 		- ```clojure
 		  (def books
 		    [{:title  "Jaws"   :copies-sold 2000000}
@@ -624,12 +651,14 @@ type:: content
 		  ```
 		- The way to understand loop is to think of it as a blend of a phantom function and a call to that function. In our example, the “function” has two parameters, books and total, which initially get bound to the original book collection and 0. With books and total bound, we evaluate the body, in this case the if expression. The trick is that loop works with recur. When it hits a recur inside the body of a loop, Clojure will reset the values bound to the symbols to values passed into recur and then recursively reevaluate the loop body.
 		- The second thing is that recur is a reasonably low-level tool. Chances are there is a better—and easier—way to get your task done. If, for example, you need to add up all those book sales, you would probably say something like this:
+		  collapsed:: true
 			- ```clojure
 			  (defn even-better-sum-copies [books] (apply + (map :copies-sold books)))
 			  (even-better-sum-copies books)
 			  ;; => 9000000
 			  ```
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c05-more-capable-functions
 		    (:require [clojure.repl :refer [doc]]))
@@ -813,7 +842,9 @@ type:: content
 		  ;; => false
 		  ```
 - Chapter 6 - Functional Things
+  collapsed:: true
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.c06-functional-things)
 		  
@@ -1021,7 +1052,9 @@ type:: content
 		  ;; => {:name "Jane Austen", :book {:title "Emma", :copies 1001}}
 		  ```
 - Chapter 7 - Let
+  collapsed:: true
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.ch07-let)
 		  
@@ -1100,10 +1133,13 @@ type:: content
 		  ;; => "WHITE"
 		  ```
 - Chapter 8 - Def, Symbols, Vars
+  collapsed:: true
 	- If vars are all about providing a global, stable environment for your code, you might wonder why vars are mutable. After all, Clojure loves immutability. But we can def and re-def our vars with wild abandon. The answer is as simple as it is pragmatic: mutable vars make for more productive Clojure programmers. Most Clojure programming is done in some form of REPL or other. While your code is under development, mutable vars are a gift from heaven.
+	  collapsed:: true
 		- Things are different in production. The vars in a production program are just as mutable as those in development, but you should avoid changing them. In production code, you should `def` (and `defn`) things and let them be.
 	- One thing to keep in mind is that let does not create vars.
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.ch08-def-symbols-vars)
 		  
@@ -1146,9 +1182,11 @@ type:: content
 		  ;; => true
 		  ```
 - Chapter 9 - Namespaces
+  collapsed:: true
 	- Along with the namespace-to-file-name transformation, Clojure also relies on the Java class path—essentially a list of places that the JVM looks for code—to help it locate namespaces. This is how Clojure knows to look in the src directory, and how it manages to locate the built-in Clojure library code. More on this in ((63dd196e-c1db-4ccf-b0b3-030ea7f9fc1f)) .
 	- REPLs generally include the name of the current namespace in their prompts. If you start a REPL with Leiningen outside of a project directory, your initial namespace will be `user`, and that’s what you will see in your prompt. On the other hand, if you start a REPL from inside of a Clojure project directory, Leiningen will default to the `core` namespace of that project.
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.ch09-namespaces
 		    (:require
@@ -1195,8 +1233,10 @@ type:: content
 		  ;; (defonce some-value (function-with-side-effects))
 		  ```
 - Chapter 10 - Sequences
+  collapsed:: true
 	- Functions like sort, reverse, partition, interleave, and interpose all share the same basic processing skeleton. They start by turning their collection arguments into sequences with `seq`. They then do their thing using only `first`, `rest`, and `cons`, or using functions that rely on the magic foursome. Finally, they return the result as—you guessed it—a sequence.
 	- Code snippets
+	  collapsed:: true
 		- ```clojure
 		  (ns follow-along.ch10-sequences
 		    (:require [clojure.java.io :as io]))
@@ -1489,6 +1529,9 @@ type:: content
 		  ;; => ("Jaws" "Emma" "1984" "The Maze Runner")
 		  ```
 - Chapter 11 - Lazy Sequences
+	- Code snippets
+		- ```clojure
+		  ```
 - Chapter 12 - Destructuring
 - Chapter 13 - Records and Protocols
 - Chapter 14 - Tests
