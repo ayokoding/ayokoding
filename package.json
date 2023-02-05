@@ -5,7 +5,9 @@
   "scripts": {
     "prepare": "husky install"
   },
-  "lint-staged": {},
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,css,md,json,yml,yaml}": "npx prettier --write"
+  },
   "devDependencies": {
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
