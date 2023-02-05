@@ -1,0 +1,1 @@
+- It lets the node manage containers in the same way for all the different container runtimes.

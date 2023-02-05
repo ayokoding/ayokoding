@@ -1,0 +1,71 @@
+- Concepts
+	- Every Pod has an IP address assigned.
+		- All containers in the pod share that address.
+		- If there are multiple containers in the Pod, they can communicate on the localhost address.
+	- All the containers in a Pod are part of the same virtual environment.
+	- Hierarchy
+		- Containers => Pod => Deployment.
+	- Pods
+		- Pods are connected to the VN managed by Kubernetes. Thay can communicate by IP address, even if they are running on different nodes in the cluster.
+		- Pods are allocated to one node when they are created, and it's that node's responsibility to manage the Pod and its containers.
+			- it does that by working with the container runtime using a known API called the [[Container Runtime Interface (CRI)]].
+	- Controller
+		- A Kubernetes resource that manages other resources.
+		- It works with the Kubernetes API to
+			- Watch the current state of the system
+			- Compares that to the desired state of its resources.
+			- Makes any changes necessary.
+		- Example ((63df7537-54cf-4315-8055-c75432c2bbbc))
+	- Deployment
+	  id:: 63df7537-54cf-4315-8055-c75432c2bbbc
+		- Created to manage the Pods.
+- Commands
+	- Pods
+		- `kubectl get pods`
+			- List all pods in the cluster
+		- `kubectl describe pod {pod-name}`
+			- Show pod's detailed information
+		- `kubectl get pods -l app={app-label}`
+			- Get pods and filter it by app label
+		- `kubectl exec -it {pod-name} -- sh`
+			- Get into the pod and drop to the terminal.
+		- `kubectl delete pods --all`
+			- Delete all pods
+	- Deployment
+		- Can be shortened as `deploy` instead of `deployment`
+		- `kubectl create deployment {deployment-name} --image={source-image}`
+			- Create deployment
+		- `kubectl delete deploy --all`
+			- Delete all deployment
+	- Nodes
+		- `kubectl get nodes`
+			- List all nodes in the cluster
+	- Port
+		- `kubectl port-forward {pod-name} {localhost-port:pod-port}`
+			- port-forward for Pod
+			- Ctrl-c to end port-forward
+			- Example:
+				- `kubectl port-forward pod/hello 8080:80`
+		- `kubectl port-forward deploy/{deployment-label} {localhost-port:deployment-port}`
+			- Ctrl-c to end port-forward
+			- Example
+				- `kubectl port-forward deploy/hello 8080:80`
+	- Manifest
+		- `kubectl apply -f {filename}.yaml`
+			- Apply app from yaml file.
+			- We could also use the remote file for this (e.g., from Github)
+	- Logging
+		- `kubectl logs --tail=2 {pod-name}`
+			- Get logs (last 2 entries) from the pod
+		- `kubectl logs --tail={num-of-last-entries} -l app={app-label}`
+			- Get logs from the deployment that matches the label
+	- File
+		- `kubectl cp {pod-name}:{source} {local-destination}`
+			- Copy file from a pod to local file system.
+	- Others
+		- `kubectl get all`
+			- Get "all" from current Kubernetes cluster
+				- Pods
+				- Services
+				- Deployment
+				- Replica Set
