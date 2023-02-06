@@ -57,13 +57,10 @@ type:: content
 		  
 		  (str "Clo" "jure")
 		  ;; => "Clojure"
-		  
 		  (str "Hello," " " "world" "!")
 		  ;; => "Hello, world!"
-		  
 		  (str 3 " " 2 " " "Blast off!")
 		  ;; => "3 2 Blast off!"
-		  
 		  
 		  (count "Hello, world")
 		  ;; => 12
@@ -123,9 +120,14 @@ type:: content
 		  (average 5.0 10.0)
 		  ;; => 7.5
 		  
-		  (/ 100 0)
+		  ;; (/ 100 0)
 		  ;; => Execution error (ArithmeticException) at follow-along.c01/eval8056 (form-init14787553069179530715.clj:75).
 		  ;;    Divide by zero
+		  
+		  (.toUpperCase "test")
+		  ;; => "TEST"
+		  (.getName String)
+		  ;; => "java.lang.String"
 		  ```
 - Chapter 2 - Vectors and Lists
 	- Vectors and Lists are immutable
@@ -133,9 +135,7 @@ type:: content
 		- ```clojure
 		  (ns follow-along.c02-vectors-and-lists)
 		  
-		  
 		  ;; one thing after another
-		  
 		  
 		  [1 2 3 4]
 		  ;; => [1 2 3 4]
@@ -144,9 +144,7 @@ type:: content
 		  [[1 true 3 "four" 5] 6]
 		  ;; => [[1 true 3 "four" 5] 6]
 		  
-		  
 		  ;; A toolkit of functions
-		  
 		  
 		  (vector true 3 "four" 5)
 		  ;; => [true 3 "four" 5]
@@ -183,9 +181,7 @@ type:: content
 		  (cons "Carrie" novels)
 		  ;; => ("Carrie" "Emma" "Coma" "War and Peace")
 		  
-		  
 		  ;; Lists
-		  
 		  
 		  '(1 2 3)
 		  ;; => (1 2 3)
@@ -211,7 +207,6 @@ type:: content
 		  (def vector-poems ["Iliad" "Odyssey" "Now we are six"])
 		  (conj vector-poems "Jabberwocky")
 		  ;; => ["Iliad" "Odyssey" "Now we are six"]
-		  
 		  
 		  ;; Staying out of trouble
 		  novels
@@ -265,9 +260,7 @@ type:: content
 		  (book-arc "published?")
 		  ;; => nil
 		  
-		  
 		  ;; Keywords
-		  
 		  
 		  :title
 		  ;; => :title
@@ -282,7 +275,6 @@ type:: content
 		  :chapter-1-and-2
 		  ;; => :chapter-1-and-2
 		  
-		  
 		  (def book
 		    {:title "Oliver Twist"
 		     :author "Dickens"
@@ -296,9 +288,7 @@ type:: content
 		  (str "Published: " (:published book))
 		  ;; => "Published: 1838"
 		  
-		  
 		  ;; Changing your map without changing it
-		  
 		  
 		  (assoc book :page-count 362)
 		  ;; => {:title "Oliver Twist", :author "Dickens", :published 1838, :page-count 362}
@@ -322,18 +312,14 @@ type:: content
 		  (assoc [:title :by :published] 1 :author)
 		  ;; => [:title :author :published]
 		  
-		  
 		  ;; Other handy map functions
-		  
 		  
 		  (keys book)
 		  ;; => (:title :author :published)
 		  (vals book)
 		  ;; => ("Oliver Twist" "Dickens" 1838)
 		  
-		  
 		  ;; Sets
-		  
 		  
 		  
 		  (def genres #{:sci-fi :romance :mystery})
@@ -360,9 +346,7 @@ type:: content
 		  (disj more-authors "King")
 		  ;; => #{"Dickens" "Clarke" "Austen"}
 		  
-		  
 		  ;; Staying out of trouble
-		  
 		  
 		  (= :title "title")
 		  ;; => false
@@ -371,10 +355,8 @@ type:: content
 		  (assoc book "title" "Pride and Prejudice")
 		  ;; => {:title "Oliver Twist", :author "Dickens", :published 1838, "title" "Pride and Prejudice"}
 		  
-		  
 		  (book :some-key-that-is-clearly-not-there)
 		  ;; => nil
-		  
 		  
 		  (def anonymous-book {:title "The Arabian Nights" :author nil})
 		  (anonymous-book :author)
@@ -385,7 +367,6 @@ type:: content
 		  ;; => true
 		  (contains? anonymous-book :favorite-color)
 		  ;; => false
-		  
 		  
 		  (def possible-authors #{"Austen" "Dickens" nil})
 		  (contains? possible-authors "Austen")
@@ -403,7 +384,6 @@ type:: content
 		  ;; => ([:author "Dickens"] [:published 1838])
 		  (count book)
 		  ;; => 3
-		  
 		  ```
 - Chapter 4 - Logic
 	- Note that the `=` function is built on the idea of structural equality: roughly, two values are equal according to `=` if they have the same value. Under the hood, `=` is identical to the Java equals method.
@@ -413,7 +393,6 @@ type:: content
 		  (ns follow-along.c04-logic)
 		  
 		  ;; The fundamental if
-		  
 		  
 		  (defn print-greeting [preffered-customer]
 		    (if preffered-customer
@@ -425,9 +404,7 @@ type:: content
 		  (print-greeting false)
 		  ;; => "Welcome to Blotts Books!"
 		  
-		  
 		  ;; Asking questions
-		  
 		  
 		  (= 1 1)
 		  ;; => true
@@ -470,9 +447,7 @@ type:: content
 		  (shipping-surcharge? false true true)
 		  ;; => true
 		  
-		  
 		  ;; Truthy and Falsy
-		  
 		  
 		  (if 1 true false)
 		  ;; => true
@@ -493,9 +468,7 @@ type:: content
 		  (if nil true false)
 		  ;; => false
 		  
-		  
 		  ;; Do and when
-		  
 		  
 		  (do
 		    (println "This is four expressions")
@@ -533,7 +506,6 @@ type:: content
 		  (customer-greeting nil)
 		  ;; => "Welcome to Blotts Books"
 		  
-		  
 		  ;; Throwing and catching
 		  
 		  ;; (/ 0 0)
@@ -549,7 +521,6 @@ type:: content
 		    (catch StackOverflowError _ (println "Unable to publish..")))
 		  ;; => nil
 		  
-		  
 		  (defn publish-book [book]
 		    (when (not (:title book))
 		      (throw (ex-info "A book needs a title!" {:book book})))
@@ -561,14 +532,11 @@ type:: content
 		  ;; => Execution error (ExceptionInfo) at follow-along.c04-logic/publish-book (form-init4924825596685870731.clj:143).
 		  ;;    A book needs a title!
 		  
-		  
 		  (try (publish-book {:author "Hurra!"})
 		       (catch clojure.lang.ExceptionInfo _  "Exception successfully catched!"))
 		  ;; => "Exception successfully catched!"
 		  
-		  
 		  ;; In the wild
-		  
 		  
 		  (defn ensure-task-is-a-vector [task]
 		    (if (vector? task)
@@ -579,9 +547,7 @@ type:: content
 		  (ensure-task-is-a-vector '(1 2 3))
 		  ;; => [(1 2 3)]
 		  
-		  
 		  ;; Staying out of trouble
-		  
 		  
 		  (and true 1984)
 		  ;; => 1984
@@ -589,17 +555,106 @@ type:: content
 		  ;; => "Emma"
 		  (and 2001 nil "Emma")
 		  ;; => nil
-		  
 		  ```
 - Chapter 5 - More Capable Functions
 	- Multimethod addition does not have to appear in the same file or be written by the same programmer as the originals. And this means Multimethods provide a great extension point for your code.
 	- Loop and recur
 		- ```clojure
+		  (ns follow-along.c05-more-capable-functions
+		    (:require [clojure.repl :refer [doc]]))
+		  
+		  ;; One function, different parameters
+		  
+		  (defn greet1
+		    ([to-whom] (str "Welcome to Blotts Books" " " to-whom))
+		    ([message to-whom] (str message " " to-whom)))
+		  (greet1 "it may concern")
+		  ;; => "Welcome to Blotts Books it may concern"
+		  (greet1 "hola" "it may concern")
+		  ;; => "hola it may concern"
+		  
+		  (defn greet
+		    ([to-whom] (greet "Welcome to Blotts Books" to-whom))
+		    ([message to-whom] (str message " " to-whom)))
+		  
+		  (greet "it may concern")
+		  ;; => "Welcome to Blotts Books it may concern"
+		  (greet "hola" "it may concern")
+		  ;; => "hola it may concern"
+		  
+		  ;; Arguments with wild abandon
+		  
+		  (defn print-any-args [& args]
+		    (str "My arguments are:" " " args))
+		  (print-any-args 7 true nil)
+		  ;; => "My arguments are: (7 true nil)"
+		  
+		  (defn first-argument [& args]
+		    (first args))
+		  (first-argument 1 2 3 4)
+		  ;; => 1
+		  
+		  (defn new-first-argument [x & _] x)
+		  (new-first-argument 4 3 2 1)
+		  ;; => 4
+		  
+		  ;; Multimethods
+		  
+		  (def book ["War and Peace"  "Tolstoy"])
+		  (defn normalize-book-1 [book]
+		    (if (vector? book)
+		      {:title (first book) :author (second book)}
+		      (if (contains? book :title)
+		        book
+		        {:title (:book book) :author (:by book)})))
+		  (normalize-book-1 book)
+		  ;; => {:title "War and Peace", :author "Tolstoy"}
+		  
+		  (defn dispatch-book-format [book]
+		    (cond
+		      (vector? book) :vector-book
+		      (contains? book :title) :standard-map
+		      (contains? book :book) :alternative-map))
+		  (defmulti normalize-book dispatch-book-format)
+		  (defmethod normalize-book :vector-book [book]
+		    {:title (first book) :author (second book)})
+		  (defmethod normalize-book :standard-map [book]
+		    book)
+		  (defmethod normalize-book :alternative-map [book]
+		    {:title (:book book) :author (:by book)})
+		  (normalize-book {:title "War and Peace" :author "Tolstoy"})
+		  ;; => {:title "War and Peace", :author "Tolstoy"}
+		  (normalize-book {:book "War and Peace" :by "Tolstoy"})
+		  ;; => {:title "War and Peace", :author "Tolstoy"}
+		  (normalize-book ["War and Peace" "Tolstoy"])
+		  ;; => {:title "War and Peace", :author "Tolstoy"}
+		  
+		  (def books-1 [{:title  "Pride and Prejudice"  :author  "Austen"  :genre :romance}
+		                {:title  "World War Z"  :author  "Brooks"  :genre :zombie}])
+		   	;; Remember you can use keys like :genre like functions on maps.
+		  (defmulti book-description :genre)
+		  (defmethod book-description :romance [book]
+		    (str  "The heart warming new romance by "  (:author book)))
+		  (defmethod book-description :zombie [book]
+		    (str  "The heart consuming new zombie adventure by "  (:author book)))
+		  (book-description (first books-1))
+		  ;; => "The heart warming new romance by Austen"
+		  (book-description (second books-1))
+		  ;; => "The heart consuming new zombie adventure by Brooks"
+		  (def ppz {:title  "Pride and Prejudice and Zombies"
+		            :author "Grahame-Smith"
+		            :genre :zombie-romance})
+		  (defmethod book-description :zombie-romance [book]
+		    (str  "The heart warming and consuming new romance by "  (:author book)))
+		  (book-description ppz)
+		  ;; => "The heart warming and consuming new romance by Grahame-Smith"
+		  
+		  ;; Deeply recursive
+		  
 		  (def books
 		    [{:title  "Jaws"   :copies-sold 2000000}
 		     {:title  "Emma"   :copies-sold 3000000}
 		     {:title  "2001"   :copies-sold 4000000}])
-		  
 		  (defn sum-copies
 		    ([books] (sum-copies books 0))
 		    ([books total]
@@ -620,6 +675,61 @@ type:: content
 		         (+ total (:copies-sold (first books)))))))
 		  (better-sum-copies books)
 		  ;; => 9000000
+		  
+		  (defn even-better-sum-copies [books] (apply + (map :copies-sold books)))
+		  (even-better-sum-copies books)
+		  ;; => 9000000
+		  
+		  ;; Docstring
+		  
+		  (defn average
+		    "Return the average of the two parameters"
+		    [a b]
+		    (/ (+ a b) 2.0))
+		  (average 10 20)
+		  ;; => 15.0
+		  
+		  (defn multi-average
+		    "return the average of 2 or 3 numbers"
+		    ([a b]
+		     (/ (+ a b) 2.0))
+		    ([a b c]
+		     (/ (+ a b c) 3.0)))
+		  (multi-average 10 20)
+		  ;; => 15.0
+		  (multi-average 10 20 30)
+		  ;; => 20.0
+		  
+		  (doc multi-average)
+		  
+		  (defn- print-book [_])
+		  (defn- ship-book [_])
+		  
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+		  (defn publish-book-old [book]
+		    (when-not (contains? book :title)
+		      (throw (ex-info "Books must contain :title" {:book book})))
+		    (print-book book)
+		    (ship-book book))
+		  
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+		  (print-book book)
+		  (ship-book book)
+		  ;; the value should be vector-expression for :pre condition
+		  
+		  (defn publish-book [book]
+		    {:pre [(:title book) (:author book)]
+		     :post [(boolean? %)]}
+		    (print-book book)
+		    (ship-book book)
+		    (boolean? book))
+		  
+		  ;; (publish-book {:title "Yo"})
+		  ;; => Execution error (AssertionError) at follow-along.c05-more-capable-functions/publish-book (c05_more_capable_functions.clj:168).
+		  ;;    Assert failed: (:author book)
+		  
+		  (publish-book {:title "Yo" :author 122})
+		  ;; => false
 		  ```
 		- The way to understand loop is to think of it as a blend of a phantom function and a call to that function. In our example, the “function” has two parameters, books and total, which initially get bound to the original book collection and 0. With books and total bound, we evaluate the body, in this case the if expression. The trick is that loop works with recur. When it hits a recur inside the body of a loop, Clojure will reset the values bound to the symbols to values passed into recur and then recursively reevaluate the loop body.
 		- The second thing is that recur is a reasonably low-level tool. Chances are there is a better—and easier—way to get your task done. If, for example, you need to add up all those book sales, you would probably say something like this:
@@ -818,7 +928,6 @@ type:: content
 		  
 		  ;; Functions are values
 		  
-		  
 		  (def dracula {:title "Dracula"
 		                :author "Stoker"
 		                :price 1.99
@@ -878,7 +987,6 @@ type:: content
 		  (both? pricey? adventure? dracula)
 		  ;; => nil
 		  
-		  
 		  ;; Functions on the fly
 		  
 		  (fn [n] (* 2 n))
@@ -926,7 +1034,6 @@ type:: content
 		  (cheap-horror-possession? dracula)
 		  ;; => nil
 		  
-		  
 		  ;; A functional toolkit
 		  
 		  (+ 1 2 3 4)
@@ -951,7 +1058,6 @@ type:: content
 		  ;; => 3
 		  (my-inc-p 2)
 		  ;; => 3
-		  
 		  
 		  (defn cheaper-than [max-price book]
 		    (when (<= (:price book) max-price)
@@ -985,7 +1091,6 @@ type:: content
 		  (cheap-horror-possession-e? dracula)
 		  ;; => false
 		  
-		  
 		  ;; Function literals
 		  
 		  (#(when (= (:genre %1) :horror) %1) dracula)
@@ -994,7 +1099,6 @@ type:: content
 		  ;; => 6
 		  (#(count %) "Count this string length")
 		  ;; => 24
-		  
 		  
 		  ;; In the wild
 		  
@@ -1023,7 +1127,6 @@ type:: content
 	- Code snippets
 		- ```clojure
 		  (ns follow-along.ch07-let)
-		  
 		  
 		  ;; ---
 		  ;; A local, temporary place for your stuff
@@ -1063,9 +1166,7 @@ type:: content
 		  (computer-felicia-price 20.0)
 		  ;; => 19.0
 		  
-		  
 		  ;; Variations on the Theme
-		  
 		  
 		  (def anonymous-book
 		    {:title "Sir Gawain and the Green Knight"})
@@ -1089,7 +1190,6 @@ type:: content
 		  (uppercase-author-iflet with-author)
 		  ;; => "WHITE"
 		  
-		  
 		  (defn uppercase-author-whenlet [book]
 		    (when-let [author (:author book)]
 		      (.toUpperCase author)))
@@ -1097,6 +1197,8 @@ type:: content
 		  ;; => nil
 		  (uppercase-author-whenlet with-author)
 		  ;; => "WHITE"
+		  
+		  ;; in the wild
 		  ```
 - Chapter 8 - Def, Symbols, Vars
 	- If vars are all about providing a global, stable environment for your code, you might wonder why vars are mutable. After all, Clojure loves immutability. But we can def and re-def our vars with wild abandon. The answer is as simple as it is pragmatic: mutable vars make for more productive Clojure programmers. Most Clojure programming is done in some form of REPL or other. While your code is under development, mutable vars are a gift from heaven.
@@ -1108,24 +1210,30 @@ type:: content
 		  
 		  ;; A global, stable place for your stuff
 		  
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (def title "Emma")
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (def PI 3.14)
 		  (def ISBN-LENGTH 13)
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (def COMPANY-NAME "Blotts Books")
 		  
-		  
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (defn book-description [book]
 		    (str (:title book)
 		         " Written by "
 		         (:author book)))
-		  (def book-description
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+		  (def book-description-with-fn
 		    (fn [book]
 		      (str (:title book)
 		           " Written by "
 		           (:author book))))
 		  
 		  (def OLD-ISBN-LENGTH 10)
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (def isbn-lengths [OLD-ISBN-LENGTH ISBN-LENGTH])
+		  #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 		  (defn valid-isbn [isbn]
 		    (or (= (count isbn) OLD-ISBN-LENGTH)
 		        (= (count isbn) ISBN-LENGTH)))
@@ -1143,6 +1251,83 @@ type:: content
 		  ;; => false
 		  (= 'title 'title)
 		  ;; => true
+		  
+		  #'author
+		  ;; => #'follow-along.ch08-def-symbols-vars/author
+		  (def the-var #'author)
+		  (.get the-var)
+		  ;; => "Austen"
+		  (.-sym the-var)
+		  ;; => author
+		  
+		  (defn some-troublesome-function-that-needs-logging [] (println ">>> yo, this is troublesome"))
+		  
+		  (def ^:dynamic *debug-enabled* false)
+		  (defn debug [msg]
+		    (if *debug-enabled*
+		      (println msg)
+		      nil))
+		  
+		  ;; Varying your vars
+		  
+		  (binding [*debug-enabled* true]
+		    (debug  "Calling that darned function")
+		    (some-troublesome-function-that-needs-logging)
+		    (debug  "Back from that darned function"))
+		  
+		  *debug-enabled*
+		  ;; => false
+		  
+		  ;; In the wild
+		  
+		  *1
+		  ;; bound to the last result from the REPL
+		  
+		  *2
+		  ;; bound to the second-to-last result from the REPL
+		  
+		  *e
+		  ;; bound to the last exception
+		  
+		  (/ 1 0)
+		  *e
+		  ;; => #error {
+		  ;;     :cause "Divide by zero"
+		  ;;     :via
+		  ;;     [{:type java.lang.ArithmeticException
+		  ;;       :message "Divide by zero"
+		  ;;       :at [clojure.lang.Numbers divide "Numbers.java" 188]}]
+		  ;;     :trace
+		  ;;     [[clojure.lang.Numbers divide "Numbers.java" 188]
+		  ;;      [clojure.lang.Numbers divide "Numbers.java" 3901]
+		  ;;      [follow_along.ch08_def_symbols_vars$eval9040 invokeStatic "form-init12702251487211342898.clj" 78]
+		  ;;      [follow_along.ch08_def_symbols_vars$eval9040 invoke "form-init12702251487211342898.clj" 78]
+		  ;;      [clojure.lang.Compiler eval "Compiler.java" 7181]
+		  ;;      [clojure.lang.Compiler eval "Compiler.java" 7136]
+		  ;;      [clojure.core$eval invokeStatic "core.clj" 3202]
+		  ;;      [clojure.core$eval invoke "core.clj" 3198]
+		  ;;      [nrepl.middleware.interruptible_eval$evaluate$fn__967$fn__968 invoke "interruptible_eval.clj" 87]
+		  ;;      [clojure.lang.AFn applyToHelper "AFn.java" 152]
+		  ;;      [clojure.lang.AFn applyTo "AFn.java" 144]
+		  ;;      [clojure.core$apply invokeStatic "core.clj" 667]
+		  ;;      [clojure.core$with_bindings_STAR_ invokeStatic "core.clj" 1977]
+		  ;;      [clojure.core$with_bindings_STAR_ doInvoke "core.clj" 1977]
+		  ;;      [clojure.lang.RestFn invoke "RestFn.java" 425]
+		  ;;      [nrepl.middleware.interruptible_eval$evaluate$fn__967 invoke "interruptible_eval.clj" 87]
+		  ;;      [clojure.main$repl$read_eval_print__9110$fn__9113 invoke "main.clj" 437]
+		  ;;      [clojure.main$repl$read_eval_print__9110 invoke "main.clj" 437]
+		  ;;      [clojure.main$repl$fn__9119 invoke "main.clj" 458]
+		  ;;      [clojure.main$repl invokeStatic "main.clj" 458]
+		  ;;      [clojure.main$repl doInvoke "main.clj" 368]
+		  ;;      [clojure.lang.RestFn invoke "RestFn.java" 1523]
+		  ;;      [nrepl.middleware.interruptible_eval$evaluate invokeStatic "interruptible_eval.clj" 84]
+		  ;;      [nrepl.middleware.interruptible_eval$evaluate invoke "interruptible_eval.clj" 56]
+		  ;;      [nrepl.middleware.interruptible_eval$interruptible_eval$fn__998$fn__1002 invoke "interruptible_eval.clj" 152]
+		  ;;      [clojure.lang.AFn run "AFn.java" 22]
+		  ;;      [nrepl.middleware.session$session_exec$main_loop__1066$fn__1070 invoke "session.clj" 202]
+		  ;;      [nrepl.middleware.session$session_exec$main_loop__1066 invoke "session.clj" 201]
+		  ;;      [clojure.lang.AFn run "AFn.java" 22]
+		  ;;      [java.lang.Thread run "Thread.java" 829]]}
 		  ```
 - Chapter 9 - Namespaces
 	- Along with the namespace-to-file-name transformation, Clojure also relies on the Java class path—essentially a list of places that the JVM looks for code—to help it locate namespaces. This is how Clojure knows to look in the src directory, and how it manages to locate the built-in Clojure library code. More on this in ((63dd196e-c1db-4ccf-b0b3-030ea7f9fc1f)) .
@@ -1169,7 +1354,6 @@ type:: content
 		  
 		  (clojure.data/diff literature horror)
 		  ;; => [["Emma" "Oliver Twist"] ["It" "Carry"] [nil nil "Possession"]]
-		  
 		  
 		  discount-rate
 		  ;; => 0.15
@@ -1423,7 +1607,6 @@ type:: content
 		  (re-seq #"\w+" title)
 		  ;; => ("Pride" "and" "Prejudice" "and" "Zombies")
 		  
-		  
 		  ;; in the wild
 		  
 		  (apply str
@@ -1488,8 +1671,11 @@ type:: content
 		  ;; => ("Jaws" "Emma" "1984" "The Maze Runner")
 		  ```
 - Chapter 11 - Lazy Sequences
+	- Lazy sequence is one that waits to be asked before it generates its elements.
+	- An unbounded sequence is a lazy sequence that, in theory, can go forever.
 	- Code snippets
 		- ```clojure
+		  
 		  ```
 - Chapter 12 - Destructuring
 - Chapter 13 - Records and Protocols
@@ -1502,3 +1688,4 @@ type:: content
 - Chapter 19 - Read and Eval
 - Chapter 20 - Macros
 - Chapter 21 - Conclusion
+-
