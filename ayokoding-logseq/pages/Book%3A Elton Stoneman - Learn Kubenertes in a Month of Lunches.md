@@ -291,6 +291,93 @@ type:: content
 		  ctrl-c
 		  
 		  # ---
+		  
+		  # deploy the LoadBalancer Service for the website--if your firewall checks 
+		  # that you want to allow traffic, then it is OK to say yes:
+		  kubectl apply -f numbers/web-service.yaml
+		   
+		  # check the details of the Service:
+		  kubectl get svc numbers-web
+		   
+		  # use formatting to get the app URL from the EXTERNAL-IP field:
+		  kubectl get svc numbers-web -o jsonpath='http://{.status.loadBalancer.ingress[0].*}:8080'
+		  
+		  # ---
+		  
+		  # delete the current API Service:
+		  kubectl delete svc numbers-api
+		   
+		  # deploy a new ExternalName Service:
+		  kubectl apply -f numbers-services/api-service-externalName.yaml
+		   
+		  # check the Service configuration:
+		  kubectl get svc numbers-api
+		   
+		  # refresh the website in your browser and test with the Go button
+		  
+		  # run the DNS lookup tool to resolve the Service name:
+		  kubectl exec deploy/sleep-1 -- sh -c 'nslookup numbers-api | tail -n 5'
+		  
+		  # ---
+		  
+		  # remove the existing Service:
+		  kubectl delete svc numbers-api
+		   
+		  # deploy the headless Service:
+		  kubectl apply -f numbers-services/api-service-headless.yaml
+		   
+		  # check the Service:
+		  kubectl get svc numbers-api
+		   
+		  # check the endpoint: 
+		  kubectl get endpoints numbers-api
+		   
+		  # verify the DNS lookup:
+		  kubectl exec deploy/sleep-1 -- sh -c 'nslookup numbers-api | grep "^[^*]"'
+		   
+		  # browse to the app--it will fail when you try to get a number
+		  
+		  # ---
+		  
+		  # show the endpoints for the sleep-2 Service:
+		  kubectl get endpoints sleep-2
+		   
+		  # delete the Pod:
+		  kubectl delete pods -l app=sleep-2
+		   
+		  # check the endpoint is updated with the IP of the replacement Pod:
+		  kubectl get endpoints sleep-2
+		   
+		  # delete the whole Deployment:
+		  kubectl delete deploy sleep-2
+		   
+		  # check the endpoint still exists, with no IP addresses:
+		  kubectl get endpoints sleep-2
+		  
+		  # ---
+		  
+		  # check the Services in the default namespace:
+		  kubectl get svc --namespace default
+		  
+		  # check Services in the system namespace:
+		  kubectl get svc -n kube-system
+		  
+		  # try a DNS lookup to a fully qualified Service name:
+		  kubectl exec deploy/sleep-1 -- sh -c 'nslookup numbers-api.default.svc.cluster.local | grep "^[^*]"'
+		  
+		  # and for a Service in the system namespace:
+		  kubectl exec deploy/sleep-1 -- sh -c 'nslookup kube-dns.kube-system.svc.cluster.local | grep "^[^*]"'
+		  
+		  # ---
+		  
+		  # delete Deployments:
+		  kubectl delete deploy --all 
+		   
+		  # and Services:
+		  kubectl delete svc --all 
+		   
+		  # check what’s running:
+		  kubectl get all
 		  ```
 	-
 - Chapter 4 - Configuring applications with ConfigMaps and Secrets

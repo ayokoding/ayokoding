@@ -29,6 +29,11 @@
 				- Good for internal communication (not exposed to the outside world or outside the cluster)
 			- LoadBalancer
 				- For external communication
+			- NodePort
+				- Listen to network traffic coming into the cluster and directs it into a Pod. Don't require an external load balancer.
+				- NodePort service behaves differently in every distribution.
+			- ExternalName
+				- Likes an alias from one domain to another. It let us use local names in our application Pods, and the DNS server in Kubernetes resolves the local name to a fully qualified external name when the Pod makes a lookup request.
 	- Network protocols
 		- Kubernetes support [[TCP]] and [[UDP]]
 		- Kubernetes has a [[DNS server]] built in.
@@ -57,6 +62,8 @@
 			- List all services
 		- `kubectl get svc {service-name}`
 			- Get service named `{service-name}`
+		- `kubectl get svc --namespace default`
+			- Get the service in the default namespace
 	- Nodes
 		- `kubectl get nodes`
 			- List all nodes in the cluster
@@ -82,6 +89,9 @@
 	- File
 		- `kubectl cp {pod-name}:{source} {local-destination}`
 			- Copy file from a pod to local file system.
+	- End Point
+		- `kubectl get endpoints`
+			- Get the endpoint list
 	- Others
 		- `kubectl get all`
 			- Get "all" from current Kubernetes cluster
